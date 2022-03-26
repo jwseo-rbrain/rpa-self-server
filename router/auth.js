@@ -37,17 +37,11 @@ router.post("/join", [
     .withMessage("비밀번호를 입력하세요")
     .isLength({ min: 8, max: 20 })
     .withMessage("비밀번호는 최소 8글자 이상 20글자 미만으로 설정하세요")
-    .custom((value) => {
-      return /[0-9]/.test(value);
-    })
+    .custom(/[0-9]/.test)
     .withMessage("숫자를 포함해 주세요")
-    .custom((value) => {
-      return /[A-Z]/.test(value);
-    })
+    .custom(/[A-Z]/.test)
     .withMessage("대문자를 포함해 주세요")
-    .custom((value) => {
-      return /[~!@#$%^&*()_+|<>?:{}]/.test(value);
-    })
+    .custom(/[~!@#$%^&*()_+|<>?:{}]/.test)
     .withMessage("특수문자를 포함해 주세요"),
   body("userNm")
     .trim()
