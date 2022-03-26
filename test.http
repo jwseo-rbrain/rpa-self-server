@@ -49,7 +49,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53Y
 ### Notice List
 POST {{baseURL}}/api/v1/board/notice/list
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA1Mjc2LCJleHAiOjE2NDgzMDcwNzZ9.3MIFLi4-SmvbNEUvu3mvizYGc-ybLc0oLTfDQZKOcNI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA3NDczLCJleHAiOjE2NDgzMDkyNzN9.aCiwfb6SaMfRQyfw4xln00frnYKi5BOweHwGK8X0qhM
 
 {
   # "isTopYn": true,
@@ -77,3 +77,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53Y
   "topYn": true,
   "visibleYn": true
 }
+
+### Notice Delete
+DELETE {{baseURL}}/api/v1/board/notice/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA3OTkxLCJleHAiOjE2NDgzMDk3OTF9.Q-myiBp-a0tdAnBtJYge8DdjSCkKgtEvvfVcTYD88Vo
+
+### Notice Detail
+GET {{baseURL}}/api/v1/board/notice/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA3OTkxLCJleHAiOjE2NDgzMDk3OTF9.Q-myiBp-a0tdAnBtJYge8DdjSCkKgtEvvfVcTYD88Vo

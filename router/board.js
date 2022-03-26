@@ -1,10 +1,12 @@
 import express from "express";
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 import * as noticeController from "../controller/boardController.js";
 import { tokenValidator } from "../controller/authController.js";
-import Notice from "../models/notice.js";
 
 const router = express.Router();
+
+// 공지사항 상세
+router.get("/notice/:id", [tokenValidator, noticeController.detail]);
 
 // 공지사항 등록
 router.post("/notice", [
@@ -102,5 +104,8 @@ router.post("/notice/list", [
   noticeController.checkValidator,
   noticeController.getList,
 ]);
+
+// 공지사항 삭제
+router.delete("/notice/:id", [tokenValidator, noticeController.remove]);
 
 export default router;

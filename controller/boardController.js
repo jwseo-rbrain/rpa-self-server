@@ -18,7 +18,7 @@ export const upload = async (req, res) => {
     await Notice.create(req.body);
     res.status(200).json({ msg: "공지사항 등록 성공!" });
   } catch (err) {
-    throw { status: 404, errors: { msg: "공지사항 등록 실패!" } };
+    throw { status: 404, errors: { msg: "공지사항 등록 실패!", err } };
   }
 };
 
@@ -59,7 +59,7 @@ export const getList = async (req, res) => {
 
     const result = await Notice.findAll(filter);
     const list = result.map((r) => r.dataValues);
-    return res.status(200).json({ data: list, total: list.length });
+    return res.status(200).json({ total: list.length, data: list });
   } catch (err) {
     throw { status: 404, errors: { msg: "DB Filter 에러" } };
   }
@@ -79,5 +79,33 @@ export const update = async (req, res) => {
     return res.status(200).json({ msg: "공지사항 수정 성공" });
   } catch (err) {
     throw { status: 404, errors: { msg: "공지사항 수정 실패" } };
+  }
+};
+
+export const detail = async (req, res) => {
+  try {
+    const data = await Notice.findByPk(req.params.id);
+    if (!data)
+      throw {
+        status: 404,
+        errors: { msg: "공지사항 정보 가져오던 중 에러 발생" },
+      };
+    return res.status(200).json({ data });
+  } catch (err) {
+    throw {
+      status: 404,
+      errors: { msg: "공지사항 정보 가져오던 중 에러 발생", err },
+    };
+  }
+};
+
+export const remove = async (req, res) => {
+  try {
+    const result = await Notice.destroy({ where: { id: req.params.id } });
+    if (!result)
+      throw { status: 404, errors: { msg: "공지사항 삭제중 오류 발생" } };
+    return res.status(200).json({ msg: "게시글 삭제 완료" });
+  } catch (err) {
+    throw { status: 404, errors: { msg: "공지사항 삭제중 오류 발생", err } };
   }
 };
