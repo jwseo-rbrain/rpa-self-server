@@ -28,5 +28,6 @@ app.use((err, req, res, next) => {
   return res.status(500).json({ errors: { msg: "관리자 문의" } });
 });
 
-app.listen(8080);
-sequelize.sync({ cors: { origin: "*" } });
+sequelize.sync({ cors: { origin: "*" } }).then((client) => {
+  app.listen(8080);
+});

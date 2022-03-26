@@ -1,6 +1,7 @@
 import moment from "moment";
 import { DataTypes } from "sequelize";
 import sequelize from "./index.js";
+import User from "./auth.js";
 
 const Notice = sequelize.define(
   "notice",
@@ -46,4 +47,5 @@ const Notice = sequelize.define(
   { timestamps: false }
 );
 
+Notice.belongsTo(User);
 export default Notice;
