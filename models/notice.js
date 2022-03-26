@@ -32,7 +32,7 @@ const Notice = sequelize.define(
       allowNull: true,
     },
   },
-  { timestamps: false }
+  { timestamps: true }
 );
 
 export default Notice;

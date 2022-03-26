@@ -15,6 +15,7 @@ export const checkValidator = (req, res, next) => {
   next();
 };
 
+// 공지사항 등록
 router.post(
   "/notice",
   [
@@ -41,5 +42,24 @@ router.post(
     }
   }
 );
+
+// 공지사항 리스트
+router.post("/notice/list", async (req, res) => {
+  const {
+    isTopYn,
+    latest,
+    categoryPk,
+    dateType,
+    startDate,
+    endDate,
+    startId,
+    itemCnt,
+    scope,
+    searchBy,
+    searchValue,
+  } = req.body;
+  const result = await Notice.findAll({ where: payload });
+  console.log(result.map((item) => item.dataValues));
+});
 
 export default router;
