@@ -1,24 +1,15 @@
 import express from "express";
-import Notice from "../models/notice.js";
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
+import * as noticeController from "../controller/boardController.js";
+import { tokenValidator } from "../controller/authController.js";
 
 const router = express.Router();
-// 유효성 검사
-export const checkValidator = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    throw {
-      status: 401,
-      errors: errors.array(),
-    };
-  }
-  next();
-};
 
 // 공지사항 등록
 router.post(
   "/notice",
   [
+    tokenValidator,
     body("title")
       .trim()
       .notEmpty()
@@ -31,35 +22,14 @@ router.post(
       .withMessage("내용을 입력해주세요")
       .isLength({ min: 3, max: 255 })
       .withMessage("내용은 3글자 이상 255글자 미만"),
-    checkValidator,
+    noticeController.checkValidator,
   ],
-  async (req, res) => {
-    try {
-      await Notice.create(req.body);
-      res.status(200).json({ msg: "공지사항 등록 성공!" });
-    } catch (err) {
-      throw { status: 404, errors: { msg: "공지사항 등록 실패!" } };
-    }
-  }
+  noticeController.upload
 );
 
 // 공지사항 리스트
-router.post("/notice/list", async (req, res) => {
-  const {
-    isTopYn,
-    latest,
-    categoryPk,
-    dateType,
-    startDate,
-    endDate,
-    startId,
-    itemCnt,
-    scope,
-    searchBy,
-    searchValue,
-  } = req.body;
-  const result = await Notice.findAll({ where: payload });
-  console.log(result.map((item) => item.dataValues));
-});
+router.post("/notice/list", tokenValidator, noticeController.getList);
+
+// 공지사항 수정
 
 export default router;

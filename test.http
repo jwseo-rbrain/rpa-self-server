@@ -1,0 +1,66 @@
+@baseURL=http://localhost:8080
+@token=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhZG1pbiIsInVzZXJObSI6Iuq0gOumrOyekCIsInVzZXJFbWFpbCI6ImFkbWluQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODIxMTkwMiwiZXhwIjoxNjQ4MjEzNzAyfQ.DJmm4P0QeMH2OV7IJDQXTaG9ksJpi5l8WX2d4y6uIE8
+
+### Login
+POST {{baseURL}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "userId": "jinwan2",
+  "userPw": "tjwjdgh3"
+}
+
+### Refresh Token
+GET {{baseURL}}/api/v1/auth/refresh
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4Mjc3MzE0LCJleHAiOjE2NDgyNzkxMTR9.7LdoFlJFmhuFE_toxYtQ8OXmX7WIsR3ZO94WhMOzkxQ
+
+### Check Token
+GET {{baseURL}}/api/v1/auth/check
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MjE3NzQ5LCJleHAiOjE2NDgyMTk1NDl9.TBR4Ct8uUKZgD2ZGamDH9EIQYenZDEr4nSRp_xQOugo
+
+
+### Join
+POST {{baseURL}}/api/v1/auth/join
+Content-Type: application/json
+
+{
+  "userId": "jinwan2",
+  "userPw": "tjwjdgh3",
+  "userNm": "서진완",
+  "userEmail": "jwseo@rbrain.co.kr"
+}
+
+
+### Notice Write
+POST {{baseURL}}/api/v1/board/notice
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4Mjc3MzE0LCJleHAiOjE2NDgyNzkxMTR9.7LdoFlJFmhuFE_toxYtQ8OXmX7WIsR3ZO94WhMOzkxQ
+
+{
+  "title": "5공지사항 테스트!",
+  "content": "공지사항 테스트",
+  "visibleYn": true,
+  "topYn": false,
+  "categoryPk": 1
+}
+
+### Notice List
+POST {{baseURL}}/api/v1/board/notice/list
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4Mjc3MzE0LCJleHAiOjE2NDgyNzkxMTR9.7LdoFlJFmhuFE_toxYtQ8OXmX7WIsR3ZO94WhMOzkxQ
+
+{
+  # "isTopYn": true,
+  # "latest": false,
+  # "categoryPk": 1,
+  # "dateType": "CREATE",
+  # "startDate": "2022-03-26 09:32:48",
+  # "endDate": "2022-03-26 15:32:48",
+  # "startId": 3,
+  # "itemCnt": 5,
+  # "scope": "PUBLIC / PRIVATE",
+  # "searchBy": "CONTENT",
+  # "searchValue": "테스트"
+}

@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator";
-import * as authController from "../container/authController.js";
+import * as authController from "../controller/authController.js";
 const router = express.Router();
 
 // 로그인
