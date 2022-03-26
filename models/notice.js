@@ -1,3 +1,4 @@
+import moment from "moment";
 import { DataTypes } from "sequelize";
 import sequelize from "./index.js";
 
@@ -31,8 +32,18 @@ const Notice = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
+    createdAt: {
+      type: DataTypes.DATEONLY,
+      defaultValue: moment().format("YYYY-MM-DD"),
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATEONLY,
+      defaultValue: moment().format("YYYY-MM-DD"),
+      allowNull: false,
+    },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 export default Notice;

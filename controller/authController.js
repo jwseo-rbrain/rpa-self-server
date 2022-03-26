@@ -22,12 +22,11 @@ const getToken = (userInfo) => {
 // 로그인 유효성 검사
 export const loginValidator = (req, res, next) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
+  if (!errors.isEmpty())
     throw {
       status: 401,
       errors: errors.array(),
     };
-  }
   next();
 };
 

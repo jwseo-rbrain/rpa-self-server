@@ -36,31 +36,44 @@ Content-Type: application/json
 ### Notice Write
 POST {{baseURL}}/api/v1/board/notice
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4Mjc3MzE0LCJleHAiOjE2NDgyNzkxMTR9.7LdoFlJFmhuFE_toxYtQ8OXmX7WIsR3ZO94WhMOzkxQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA1Mjc2LCJleHAiOjE2NDgzMDcwNzZ9.3MIFLi4-SmvbNEUvu3mvizYGc-ybLc0oLTfDQZKOcNI
 
 {
-  "title": "5공지사항 테스트!",
-  "content": "공지사항 테스트",
+  "title": "공지사항 테스트2",
+  "content": "공지사항 테스트2",
   "visibleYn": true,
-  "topYn": false,
-  "categoryPk": 1
+  "topYn": true,
+  "categoryPk": 2
 }
 
 ### Notice List
 POST {{baseURL}}/api/v1/board/notice/list
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4Mjc3MzE0LCJleHAiOjE2NDgyNzkxMTR9.7LdoFlJFmhuFE_toxYtQ8OXmX7WIsR3ZO94WhMOzkxQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA1Mjc2LCJleHAiOjE2NDgzMDcwNzZ9.3MIFLi4-SmvbNEUvu3mvizYGc-ybLc0oLTfDQZKOcNI
 
 {
   # "isTopYn": true,
   # "latest": false,
   # "categoryPk": 1,
   # "dateType": "CREATE",
-  # "startDate": "2022-03-26 09:32:48",
-  # "endDate": "2022-03-26 15:32:48",
+  # "startDate": "2022-03-26",
+  # "endDate": "2022-03-26",
   # "startId": 3,
   # "itemCnt": 5,
   # "scope": "PUBLIC / PRIVATE",
   # "searchBy": "CONTENT",
   # "searchValue": "테스트"
+}
+
+### Notice Update
+PUT {{baseURL}}/api/v1/board/notice/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4Mjk5NjY4LCJleHAiOjE2NDgzMDE0Njh9.-nAIqtspLKd_rEbSs1mKlgn_lXRjrmUN3jC8jhZ8JY4
+
+{
+  "categoryPk": 0,
+  "content": "커뮤니티 제목입니다",
+  "title": "커뮤니티 제목입니다",
+  "topYn": true,
+  "visibleYn": true
 }

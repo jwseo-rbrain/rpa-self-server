@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./index.js";
+import moment from "moment";
 
 const User = sequelize.define(
   "user",
@@ -28,8 +29,18 @@ const User = sequelize.define(
       type: DataTypes.STRING(125),
       allowNull: false,
     },
+    createdAt: {
+      type: DataTypes.DATEONLY,
+      defaultValue: moment().format("YYYY-MM-DD"),
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATEONLY,
+      defaultValue: moment().format("YYYY-MM-DD"),
+      allowNull: false,
+    },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 export default User;
