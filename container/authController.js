@@ -18,6 +18,7 @@ const getToken = (userInfo) => {
 /**
  * 유효성 검사
  */
+
 // 로그인 유효성 검사
 export const loginValidator = (req, res, next) => {
   const errors = validationResult(req);
@@ -29,6 +30,7 @@ export const loginValidator = (req, res, next) => {
   }
   next();
 };
+
 // 토큰 유효성 검사
 export const tokenValidator = (req, res, next) => {
   const authorization = req.header("Authorization");
@@ -52,6 +54,7 @@ export const tokenValidator = (req, res, next) => {
 export const checkToken = (req, res) => {
   return res.status(200).json({ msg: "토큰 유효함" });
 };
+
 // 토큰 재발급
 export const refreshToken = async (req, res) => {
   const { userId, userEmail, userNm } = req.payload;
@@ -70,18 +73,23 @@ export const refreshToken = async (req, res) => {
 // 회원 가입
 export const createUser = async (req, res) => {
   const { userId, userPw, userNm, userEmail } = req.body;
-  await User.create({
-    userId,
-    userPw: bcrypt.hashSync(userPw, parseInt(PW_SALT)),
-    userNm,
-    userEmail,
-  });
+  try {
+    await User.create({
+      userId,
+      userPw: bcrypt.hashSync(userPw, parseInt(PW_SALT)),
+      userNm,
+      userEmail,
+    });
 
-  res.status(200).json({
-    msg: "회원 가입 완료",
-    token: getToken(userId, userNm, userEmail),
-  });
+    res.status(200).json({
+      msg: "회원 가입 완료",
+      token: getToken(userId, userNm, userEmail),
+    });
+  } catch (err) {
+    throw { status: 401, errors: { msg: "id 중복" } };
+  }
 };
+
 // 로그인
 export const loginUser = async (req, res) => {
   const user = await User.findOne({ where: { userId: req.body.userId } });
