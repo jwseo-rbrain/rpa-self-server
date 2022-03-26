@@ -1,5 +1,5 @@
 import express from "express";
-import { body, param } from "express-validator";
+import { body } from "express-validator";
 import * as noticeController from "../controller/boardController.js";
 import { tokenValidator } from "../controller/authController.js";
 
