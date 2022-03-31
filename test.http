@@ -36,7 +36,7 @@ Content-Type: application/json
 ### Notice Write
 POST {{baseURL}}/api/v1/board/notice
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA1Mjc2LCJleHAiOjE2NDgzMDcwNzZ9.3MIFLi4-SmvbNEUvu3mvizYGc-ybLc0oLTfDQZKOcNI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiamlud2FuMiIsInVzZXJObSI6IuyEnOynhOyZhCIsInVzZXJFbWFpbCI6Imp3c2VvQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODczMjE3OSwiZXhwIjoxNjQ4NzMzOTc5fQ.OKJ35XG4An4IDHiXHFnaBworFF17Kwt4yr_FYcCHs6Q
 
 {
   "title": "공지사항 테스트2",
@@ -49,7 +49,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53Y
 ### Notice List
 POST {{baseURL}}/api/v1/board/notice/list
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA3NDczLCJleHAiOjE2NDgzMDkyNzN9.aCiwfb6SaMfRQyfw4xln00frnYKi5BOweHwGK8X0qhM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4NzI3NDU0LCJleHAiOjE2NDg3MjkyNTR9.umSRTuCRbLtz0IGVRSslRm64x767TjWL8npo2cb-ISc
 
 {
   # "isTopYn": true,
@@ -86,3 +86,52 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53Y
 GET {{baseURL}}/api/v1/board/notice/2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJqaW53YW4yIiwidXNlck5tIjoi7ISc7KeE7JmEIiwidXNlckVtYWlsIjoiandzZW9AcmJyYWluLmNvLmtyIiwiaWF0IjoxNjQ4MzA3OTkxLCJleHAiOjE2NDgzMDk3OTF9.Q-myiBp-a0tdAnBtJYge8DdjSCkKgtEvvfVcTYD88Vo
+
+### Faq
+POST {{baseURL}}/api/v1/board/faq HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiamlud2FuMiIsInVzZXJObSI6IuyEnOynhOyZhCIsInVzZXJFbWFpbCI6Imp3c2VvQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODczMjUxOCwiZXhwIjoxNjQ4NzM0MzE4fQ.GAIL8F6HCvXQNZij2TJhTuSkJan-Rnwbfj6xuMwdFMc
+
+{
+  "title": "Hello123",
+  "content": "Hello world!123",
+  "visibleYn": true
+}
+
+### FAQ GET
+GET {{baseURL}}/api/v1/board/faq/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiamlud2FuMiIsInVzZXJObSI6IuyEnOynhOyZhCIsInVzZXJFbWFpbCI6Imp3c2VvQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODczMjUxOCwiZXhwIjoxNjQ4NzM0MzE4fQ.GAIL8F6HCvXQNZij2TJhTuSkJan-Rnwbfj6xuMwdFMc
+
+### FAQ UPDATE
+PUT {{baseURL}}/api/v1/board/faq/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiamlud2FuMiIsInVzZXJObSI6IuyEnOynhOyZhCIsInVzZXJFbWFpbCI6Imp3c2VvQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODczMjUxOCwiZXhwIjoxNjQ4NzM0MzE4fQ.GAIL8F6HCvXQNZij2TJhTuSkJan-Rnwbfj6xuMwdFMc
+
+{
+  "title": "Updated Test",
+  "content": "This is Faq update Test",
+  "visibleYn": true,
+  "userId": 1
+}
+
+### FAQ Remove
+DELETE {{baseURL}}/api/v1/board/faq/39 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiamlud2FuMiIsInVzZXJObSI6IuyEnOynhOyZhCIsInVzZXJFbWFpbCI6Imp3c2VvQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODczMjUxOCwiZXhwIjoxNjQ4NzM0MzE4fQ.GAIL8F6HCvXQNZij2TJhTuSkJan-Rnwbfj6xuMwdFMc
+
+### FAQ LIST GET
+POST {{baseURL}}/api/v1/board/faq/list HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoiamlud2FuMiIsInVzZXJObSI6IuyEnOynhOyZhCIsInVzZXJFbWFpbCI6Imp3c2VvQHJicmFpbi5jby5rciIsImlhdCI6MTY0ODczMjUxOCwiZXhwIjoxNjQ4NzM0MzE4fQ.GAIL8F6HCvXQNZij2TJhTuSkJan-Rnwbfj6xuMwdFMc
+
+{
+  "dateType": "CREATE",
+  "startDate": "2022-03-31",
+  "endDate": "2022-03-31",
+  # "searchBy": "TITLE",
+  # "searchValue": "Updated",
+  "itemCnt": 5,
+  "latest": true,
+  "startId": 3
+}

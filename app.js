@@ -4,7 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import authRouter from "./router/auth.js";
-import boardRouter from "./router/board.js";
+import boardRouter from "./router/board/index.js";
 import sequelize from "./models/index.js";
 
 const app = express();

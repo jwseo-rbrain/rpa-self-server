@@ -9,8 +9,8 @@ const { PW_SALT, JWT_SECRET } = process.env;
 
 // 토큰 생성
 const getToken = (userInfo) => {
-  const { userId, userEmail, userNm } = userInfo;
-  return jwt.sign({ userId, userNm, userEmail }, JWT_SECRET, {
+  const { id, userId, userEmail, userNm } = userInfo;
+  return jwt.sign({ id, userId, userNm, userEmail }, JWT_SECRET, {
     expiresIn: 60 * 30,
   });
 };
@@ -62,7 +62,7 @@ export const refreshToken = async (req, res) => {
   if (!user) throw { status: 404, errors: { msg: "유저 정보 없음" } };
 
   return res.status(200).json({
-    token: getToken({ userId, userNm, userEmail }),
+    token: getToken({ id: user.id, userId, userNm, userEmail }),
   });
 };
 
@@ -73,7 +73,7 @@ export const refreshToken = async (req, res) => {
 export const createUser = async (req, res) => {
   const { userId, userPw, userNm, userEmail } = req.body;
   try {
-    await User.create({
+    const user = await User.create({
       userId,
       userPw: bcrypt.hashSync(userPw, parseInt(PW_SALT)),
       userNm,
@@ -82,7 +82,7 @@ export const createUser = async (req, res) => {
 
     res.status(200).json({
       msg: "회원 가입 완료",
-      token: getToken(userId, userNm, userEmail),
+      token: getToken({ id: user.id, userId, userNm, userEmail }),
     });
   } catch (err) {
     throw { status: 401, errors: { msg: "id 중복" } };
@@ -94,12 +94,11 @@ export const loginUser = async (req, res) => {
   const user = await User.findOne({ where: { userId: req.body.userId } });
 
   if (!user) throw { status: 401, errors: { msg: "회원 정보 없음" } };
-
-  const { userId, userEmail, userNm } = user;
+  const { id, userId, userEmail, userNm } = user;
   if (!bcrypt.compareSync(req.body.userPw, user.userPw))
     throw { status: 401, errors: { msg: "비번 다름" } };
 
   return res.status(200).json({
-    token: getToken({ userId, userNm, userEmail }),
+    token: getToken({ id, userId, userNm, userEmail }),
   });
 };

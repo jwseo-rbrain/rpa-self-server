@@ -42,7 +42,7 @@ router.post("/join", [
     .custom(/[A-Z]/.test)
     .withMessage("대문자를 포함해 주세요")
     .custom(/[~!@#$%^&*()_+|<>?:{}]/.test)
-    .withMessage("특수문자를 포함해 주세요"),
+    .withMessage("특수 문자를 포함해 주세요"),
   body("userNm")
     .trim()
     .notEmpty()
@@ -52,7 +52,7 @@ router.post("/join", [
   body("userEmail")
     .trim()
     .notEmpty()
-    .withMessage("메일주소를 입력하세요")
+    .withMessage("메일 주소를 입력하세요")
     .isEmail()
     .withMessage("메일 주소 형식으로 입력하세요"),
   authController.loginValidator,

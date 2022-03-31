@@ -54,8 +54,18 @@ export const getList = async (req, res) => {
       filter.order.push(["topYn", isTopYn ? "DESC" : "ASC"]);
     if (typeof categoryPk === "number") filter.where.categoryPk = categoryPk;
     if (typeof scope === "string") filter.where.visibleYn = scope === "PUBLIC";
-    if (typeof startId === "number") filter.offset = startId;
-    if (typeof itemCnt === "number") filter.limit = itemCnt;
+    if (startId) {
+      filter.where.id = {
+        ...filter.where.id,
+        ...{ [Op.gte]: startId },
+      };
+    }
+    if (itemCnt) {
+      filter.where.id = {
+        ...filter.where.id,
+        ...{ [Op.lte]: startId ? startId + itemCnt : itemCnt },
+      };
+    }
 
     const result = await Notice.findAll(filter);
     const list = result.map((r) => r.dataValues);

@@ -1,15 +1,15 @@
 import express from "express";
 import { body } from "express-validator";
-import * as noticeController from "../controller/boardController.js";
-import { tokenValidator } from "../controller/authController.js";
+import * as noticeController from "../../controller/boardController.js";
+import { tokenValidator } from "../../controller/authController.js";
 
 const router = express.Router();
 
 // 공지사항 상세
-router.get("/notice/:id", [tokenValidator, noticeController.detail]);
+router.get("/:id", [tokenValidator, noticeController.detail]);
 
 // 공지사항 등록
-router.post("/notice", [
+router.post("/", [
   tokenValidator,
   body("title")
     .trim()
@@ -28,7 +28,7 @@ router.post("/notice", [
 ]);
 
 // 공지사항 수정
-router.put("/notice/:id", [
+router.put("/:id", [
   tokenValidator,
   body("title")
     .trim()
@@ -59,7 +59,7 @@ router.put("/notice/:id", [
 ]);
 
 // 공지사항 리스트
-router.post("/notice/list", [
+router.post("/list", [
   tokenValidator,
   body("isTopYn")
     .optional({ nullable: true })
@@ -106,6 +106,6 @@ router.post("/notice/list", [
 ]);
 
 // 공지사항 삭제
-router.delete("/notice/:id", [tokenValidator, noticeController.remove]);
+router.delete("/:id", [tokenValidator, noticeController.remove]);
 
 export default router;
