@@ -1,13 +1,15 @@
 import express from "express";
 import { body } from "express-validator";
 import * as authController from "../controller/authController.js";
+import * as checkController from "../plugins/check.js";
+
 const router = express.Router();
 
 // 로그인
 router.post("/login", [
   body("userId").trim().notEmpty().withMessage("아이디를 입력하세요"),
   body("userPw").trim().notEmpty().withMessage("비밀번호를 입력하세요"),
-  authController.loginValidator,
+  checkController.checkValidator,
   authController.loginUser,
 ]);
 
@@ -55,7 +57,7 @@ router.post("/join", [
     .withMessage("메일 주소를 입력하세요")
     .isEmail()
     .withMessage("메일 주소 형식으로 입력하세요"),
-  authController.loginValidator,
+  checkController.checkValidator,
   authController.createUser,
 ]);
 

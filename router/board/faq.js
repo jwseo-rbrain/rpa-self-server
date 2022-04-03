@@ -2,6 +2,8 @@ import express from "express";
 import { body } from "express-validator";
 import { config } from "dotenv";
 import * as faqController from "../../controller/faqController.js";
+import * as checkController from "../../plugins/check.js";
+
 config();
 
 const router = express.Router();
@@ -26,8 +28,8 @@ router.post(
       .optional({ nullable: true })
       .isBoolean()
       .withMessage("형식에 맞게 입력하세요 (true / false)"),
-    faqController.checkValidator,
-    faqController.checkTokenAndSetUser,
+    checkController.checkValidator,
+    checkController.checkTokenAndSetUser,
   ],
   faqController.upload
 );
@@ -36,10 +38,14 @@ router.post(
 router.get("/:id", faqController.read);
 
 // // update
-router.put("/:id", faqController.checkTokenAndSetUser, faqController.update);
+router.put("/:id", checkController.checkTokenAndSetUser, faqController.update);
 
 // delete
-router.delete("/:id", faqController.checkTokenAndSetUser, faqController.remove);
+router.delete(
+  "/:id",
+  checkController.checkTokenAndSetUser,
+  faqController.remove
+);
 
 // get list
 router.post(
@@ -82,7 +88,7 @@ router.post(
       .optional({ nullable: true })
       .isInt()
       .withMessage("형식에 맞게 입력 학세요 (INT)"),
-    faqController.checkValidator,
+    checkController.checkValidator,
   ],
   faqController.getList
 );

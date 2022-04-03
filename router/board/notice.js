@@ -2,6 +2,7 @@ import express from "express";
 import { body } from "express-validator";
 import * as noticeController from "../../controller/boardController.js";
 import { tokenValidator } from "../../controller/authController.js";
+import * as checkController from "../../plugins/check.js";
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.post("/", [
     .withMessage("내용을 입력해주세요")
     .isLength({ min: 3, max: 255 })
     .withMessage("내용은 3글자 이상 255글자 미만"),
-  noticeController.checkValidator,
+  checkController.checkValidator,
   noticeController.upload,
 ]);
 
@@ -54,7 +55,7 @@ router.put("/:id", [
     .optional({ nullable: true })
     .isInt()
     .withMessage("형식에 맞게 입력하세요 (int)"),
-  noticeController.checkValidator,
+  checkController.checkValidator,
   noticeController.update,
 ]);
 
@@ -101,7 +102,7 @@ router.post("/list", [
     .optional({ nullable: true })
     .custom(/TITLE|CONTENT/.test)
     .withMessage("형식에 맞게 입력하세요 (TITLE / CONTENT)"),
-  noticeController.checkValidator,
+  checkController.checkValidator,
   noticeController.getList,
 ]);
 

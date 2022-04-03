@@ -1,17 +1,5 @@
 import Notice from "../models/notice.js";
 import { Op } from "sequelize";
-import { validationResult } from "express-validator";
-
-export const checkValidator = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    throw {
-      status: 401,
-      errors: errors.array(),
-    };
-  }
-  next();
-};
 
 export const upload = async (req, res) => {
   try {

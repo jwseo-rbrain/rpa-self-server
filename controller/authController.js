@@ -1,7 +1,6 @@
 import User from "../models/auth.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { validationResult } from "express-validator";
 import { config } from "dotenv";
 config();
 
@@ -18,17 +17,6 @@ const getToken = (userInfo) => {
 /**
  * 유효성 검사
  */
-
-// 로그인 유효성 검사
-export const loginValidator = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty())
-    throw {
-      status: 401,
-      errors: errors.array(),
-    };
-  next();
-};
 
 // 토큰 유효성 검사
 export const tokenValidator = (req, res, next) => {
